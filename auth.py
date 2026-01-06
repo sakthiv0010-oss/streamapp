@@ -16,6 +16,6 @@ def login():
         if uid in USERS:
             st.session_state["user"] = uid
             st.session_state["role"] = USERS[uid]["role"]
-            st.experimental_rerun()
+            st.rerun()
         else:
             st.error("Invalid credentials")

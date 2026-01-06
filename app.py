@@ -6,6 +6,23 @@ st.set_page_config(
     page_title="AgroCarbon Login",
     layout="wide",
 )
+import streamlit as st
+from components.sidebar import render_sidebar
+from components.dashboard import render_dashboard
+
+st.set_page_config(
+    page_title="AgroCarbon",
+    page_icon="🌱",
+    layout="wide"
+)
+
+# Load CSS
+with open("./assets/style.css") as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+render_sidebar()
+render_dashboard()
+
 
 # ================== CUSTOM CSS ==================
 st.markdown("""
@@ -84,6 +101,7 @@ st.markdown("""
     <div class="subtitle">Carbon Credits for Sustainable Farming</div>
 </div>
 """, unsafe_allow_html=True)
+
 
 if "user" not in st.session_state:
     login()
