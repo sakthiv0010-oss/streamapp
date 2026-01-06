@@ -1,11 +1,19 @@
 import streamlit as st
 from auth import login
-st.markdown("<style>" + open("assets/style.css").read() + "</style>", unsafe_allow_html=True)
+from components.sidebar import sidebar
 
+
+# ---------- PAGE CONFIG ----------
 st.set_page_config(
     page_title="AgroCarbon Login",
     layout="wide",
 )
+
+
+
+# Load CSS
+with open("./assets/style.css") as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 # ================== CUSTOM CSS ==================
 st.markdown("""
@@ -85,17 +93,22 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-if "user" not in st.session_state:
-    login()
-else:
-    role = st.session_state["role"]
 
-    if role == "Farmer":
-        from pages.farmer_dashboard import render
-        render()
-    elif role == "Verifier":
-        from pages.verifier_dashboard import render
-        render()
-    elif role == "Admin":
-        from pages.admin_panel import render
-        render()
+
+user_id = st.text_input(
+    "User ID",
+    placeholder="far-001 / ver-001 / adm-001"
+)
+
+if st.button("Login"):
+    if user_id == "far-001":
+        st.switch_page("pages/1_Farmer_Dashboard.py")
+
+    elif user_id == "ver-001":
+        st.switch_page("pages/2_Verifier_Dashboard.py")
+
+    elif user_id == "adm-001":
+        st.switch_page("pages/3_Admin_Dashboard.py")
+
+    else:
+        st.error("❌ Invalid User ID")

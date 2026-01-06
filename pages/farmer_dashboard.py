@@ -1,7 +1,21 @@
 import streamlit as st
 import plotly.express as px
 import pandas as pd
+st.markdown("""
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    </style>
+    """, unsafe_allow_html=True)
 
+    html = load_html("frontend/dashboard.html")
+
+    components.html(
+        html,
+        height=1200,
+        scrolling=True
+    )
 def render():
     st.markdown("## 🌱 Farmer Dashboard")
 

@@ -8,14 +8,25 @@ USERS = {
 }
 
 def login():
-    st.markdown("## 🌱 AgroCarbon Login")
-    uid = st.text_input("User ID")
-    pwd = st.text_input("Password", type="password")
+    st.markdown("## 🔐 Login")
+
+    user_id = st.text_input(
+        "Enter User ID",
+        placeholder="far-001 / ver-001 / adm-001"
+    )
 
     if st.button("Login"):
-        if uid in USERS:
-            st.session_state["user"] = uid
-            st.session_state["role"] = USERS[uid]["role"]
+        if user_id.startswith("far-"):
+            st.session_state.role = "farmer"
             st.experimental_rerun()
+
+        elif user_id.startswith("ver-"):
+            st.session_state.role = "verifier"
+            st.experimental_rerun()
+
+        elif user_id.startswith("adm-"):
+            st.session_state.role = "admin"
+            st.experimental_rerun()
+
         else:
-            st.error("Invalid credentials")
+            st.error("❌ Invalid User ID")
