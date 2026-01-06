@@ -1,6 +1,6 @@
 import streamlit as st
 
-def render_sidebar():
+def sidebar():
     with st.sidebar:
         st.markdown("""
         <div class="logo-box">

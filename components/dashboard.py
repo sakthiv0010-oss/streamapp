@@ -2,7 +2,7 @@ import streamlit as st
 import plotly.graph_objects as go
 import pandas as pd
 
-def render_dashboard():
+def dashboard():
     st.markdown("""
     <div style="display:flex; justify-content:space-between; align-items:center;">
         <div>
